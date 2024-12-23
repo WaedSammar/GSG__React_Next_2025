@@ -1,0 +1,23 @@
+.display {
+  background-color: #e9ecf3;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  font-family: Arial, sans-serif;
+}
+
+.input-text {
+  font-size: 1.2rem;
+  color: #000;
+  margin-bottom: 10px;
+  word-wrap: break-word;
+}
+
+.current-value {
+  font-size: 2rem;
+  color: #000;
+}
