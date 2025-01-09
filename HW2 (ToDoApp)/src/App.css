@@ -21,6 +21,9 @@ body {
   text-align: center;
   font-size: 36px;
 }
+h4 {
+  text-align: center;
+}
 .date {
   margin-left: 30%;
   font-weight: 600;
