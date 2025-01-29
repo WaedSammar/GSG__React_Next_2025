@@ -1,0 +1,27 @@
+body {
+  display: flex;
+  justify-content: center;
+}
+#root {
+  max-width: 100%;
+  margin: 0;
+  padding: 0 2rem;
+  text-align: center;
+}
+.main {
+  max-width: 600px;
+  background-color: #faedcd;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+main h1 {
+  margin-top: 0;
+}
+.main > .stats {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.main.wrapper {
+  border-left: 8px solid #da498d;
+}
