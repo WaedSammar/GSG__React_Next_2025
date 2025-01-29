@@ -25,3 +25,11 @@ main h1 {
 .main.wrapper {
   border-left: 8px solid #da498d;
 }
+nav {
+  margin: 20px 0;
+  border-top: 2px solid #da498d;
+  border-bottom: 2px solid #da498d;
+  padding: 5px 0;
+  display: flex;
+  column-gap: 10px;
+}

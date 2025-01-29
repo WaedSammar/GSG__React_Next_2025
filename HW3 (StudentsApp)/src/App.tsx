@@ -1,10 +1,8 @@
-import { useEffect, useReducer, useRef } from "react";
+import { useState } from "react";
 import "./App.css";
-import Student from "./component/student/student.component";
-import { IStudent } from "./types";
-import AddForm from "./component/add-form/add-form.component";
-import useLocalStorage from "./hooks/local-storage.hook";
-import reducer from "./state/reducer";
+import Main from "./screens/Main.screens";
+import About from "./screens/about.screen";
+import NotFound from "./screens/NotFound.screen";
 
 // const COURSES_LIST: string[] = ["React", "HTML", "CSS"];
 // const INITIAL_LIST: Array<IStudent> = [
@@ -43,72 +41,23 @@ import reducer from "./state/reducer";
 // ];
 
 function App() {
-  const [state, dispatch] = useReducer(reducer, {
-    studentsList: [],
-    totalAbsents: 0,
-  });
-  const lastStdRef = useRef<HTMLDivElement>(null);
-  const { storedData } = useLocalStorage(state.studentsList, "students-list");
-
-  useEffect(() => {
-    localStorage.setItem("students-list", JSON.stringify(state.studentsList));
-  }, [state.studentsList]);
-
-  useEffect(() => {
-    const stdList: IStudent[] = storedData || [];
-    const totalAbs = stdList.reduce((prev, cur) => {
-      return prev + cur.absents;
-    }, 0);
-
-    dispatch({
-      type: "INIT_STUDENT",
-      payload: { studentsList: stdList, totalAbsents: totalAbs },
-    });
-  }, [storedData]);
-
-  const removeFirst = () => {
-    dispatch({ type: "REMOVE_FIRST" });
-  };
-
-  const handleAbsentChange = (id: string, change: number) => {
-    dispatch({ type: "TOTAL_ABSENT", payload: { id, change } });
-  };
-
-  const handleAddStudent = (newStudent: IStudent) => {
-    dispatch({ type: "ADD_STUDENT", payload: newStudent });
-  };
-
-  const scrollToLast = () => {
-    if (lastStdRef.current) {
-      lastStdRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
+  const [currentPage, setCurrentPage] = useState("main");
   const h1style = { color: "#3a5a40", fontSize: "24px" };
+
   return (
     <div className="main wrapper">
       <h1 style={h1style}>Welcome to GSG React/Next Course</h1>
-      <AddForm className="addForm" onSubmit={handleAddStudent} />
-      <div className="stats">
-        <button onClick={removeFirst}>Pop Student</button>
-        <button onClick={scrollToLast}>Scroll to Last Student</button>
-        <b style={{ fontSize: "12px", fontWeight: "100", color: "grey" }}>
-          Total Absents {state.totalAbsents}
-        </b>
-      </div>
-      {state.studentsList.map((student) => (
-        <Student
-          id={student.id}
-          key={student.id}
-          name={student.name}
-          age={student.age}
-          isGraduated={student.isGraduated}
-          coursesList={student.coursesList}
-          onAbsentChange={handleAbsentChange}
-          absents={student.absents}
-        />
-      ))}
-      <div ref={lastStdRef}></div>
+      <nav>
+        <button onClick={() => setCurrentPage("main")}>Home Page</button>
+        <button onClick={() => setCurrentPage("about")}>About App</button>
+      </nav>
+      {currentPage === "main" ? (
+        <Main />
+      ) : currentPage === "about" ? (
+        <About />
+      ) : (
+        <NotFound />
+      )}
     </div>
   );
 }
