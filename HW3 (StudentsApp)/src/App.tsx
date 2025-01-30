@@ -1,8 +1,8 @@
-import { useState } from "react";
 import "./App.css";
 import Main from "./screens/Main.screens";
 import About from "./screens/about.screen";
 import NotFound from "./screens/NotFound.screen";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 
 // const COURSES_LIST: string[] = ["React", "HTML", "CSS"];
 // const INITIAL_LIST: Array<IStudent> = [
@@ -41,23 +41,23 @@ import NotFound from "./screens/NotFound.screen";
 // ];
 
 function App() {
-  const [currentPage, setCurrentPage] = useState("main");
+
   const h1style = { color: "#3a5a40", fontSize: "24px" };
 
   return (
     <div className="main wrapper">
       <h1 style={h1style}>Welcome to GSG React/Next Course</h1>
-      <nav>
-        <button onClick={() => setCurrentPage("main")}>Home Page</button>
-        <button onClick={() => setCurrentPage("about")}>About App</button>
-      </nav>
-      {currentPage === "main" ? (
-        <Main />
-      ) : currentPage === "about" ? (
-        <About />
-      ) : (
-        <NotFound />
-      )}
+      <BrowserRouter>
+        <nav>
+          <Link to="/">Home Page</Link>
+          <Link to="/about">About App</Link>
+        </nav>
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/about" element={<About />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
