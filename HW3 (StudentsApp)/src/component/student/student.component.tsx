@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { IStudent } from "../../types";
 import CoursesList from "../courses-list/courses-list.component";
 import "./student.css";
+import { Link } from "react-router-dom";
 
 interface IProps extends IStudent {
   onAbsentChange: (id: string, change: number) => void;
@@ -52,7 +53,7 @@ const Student = (props: IProps) => {
   return (
     <div className="std-wrapper">
       <div className="data-field">
-        <b>Student:</b> {props.name.toUpperCase()}
+        <b>Student:</b> <Link to={`/student/${props.id}`}>{props.name.toUpperCase()}</Link>
       </div>
       <div className="data-field">
         <b>Age:</b> {props.age}
