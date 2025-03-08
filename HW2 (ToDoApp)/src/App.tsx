@@ -1,4 +1,11 @@
-import { useCallback, useEffect, useReducer, useRef, useState } from "react";
+import {
+  useCallback,
+  useContext,
+  useEffect,
+  useReducer,
+  useRef,
+  useState,
+} from "react";
 import "./App.css";
 import Dashboard from "./components/dashboard/dashboard.component";
 import Form from "./components/form/form.component";
@@ -6,6 +13,7 @@ import TodoList from "./components/todo-list/todo-list.component";
 import { ITodoItem } from "./components/types";
 import useLocalStorage from "./hooks/local-storage.hook";
 import reducer from "./state/reducer";
+import { ThemeContext } from "./main";
 
 function App() {
   const today = new Date().getDate();
@@ -23,7 +31,13 @@ function App() {
     todos: [],
     userName: "Ali",
   });
+  const { theme, setTheme } = useContext(ThemeContext);
   const { storedData } = useLocalStorage(state.todos, "todo-list");
+
+  useEffect(() => {
+    document.body.style.backgroundColor =
+      theme === "light" ? "#fff" : "#000";
+  }, [theme]);
 
   useEffect(() => {
     dispatch({ type: "INIT_TODO", payload: storedData || [] });
@@ -58,12 +72,17 @@ function App() {
     dispatch({ type: "REMOVE_TODO", payload: itemId });
   };
 
+  const toggleTheme = () => {
+    setTheme((old) => (old === "light" ? "dark" : "light"));
+  };
+
   return (
     <div>
       <h1 className="main">Todo App✍</h1>
       <h4>
         {date}
         <button onClick={stopTime}>Stop</button>
+        <button onClick={toggleTheme}>Toggle Theme</button>
       </h4>
       <p className="date">
         {currentDate}, {today} {month}

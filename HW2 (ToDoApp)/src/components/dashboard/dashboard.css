@@ -7,6 +7,7 @@
   row-gap: 10px;
   margin-left: auto;
   margin-right: auto;
+  border-radius: 5px;
 }
 .tasks {
   border: 1px solid #000;
@@ -18,4 +19,7 @@
 }
 b {
   padding: 5px;
+}
+.dashboard-wrapper.dark{
+  background-color: rgb(70, 70, 70);
 }

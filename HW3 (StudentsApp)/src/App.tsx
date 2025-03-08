@@ -15,6 +15,7 @@ function App() {
       <BrowserRouter>
         <nav>
           <Link to="/">Home Page</Link>
+          <Link to="/add">Add Student</Link>
           <Link to="/about">About App</Link>
         </nav>
         <Routes>
