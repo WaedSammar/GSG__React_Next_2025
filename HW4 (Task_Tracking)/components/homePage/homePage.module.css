@@ -1,0 +1,29 @@
+.container{
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 550px;
+  justify-content: center;
+  text-align: center;
+  line-height: 22px;
+}
+.title {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.lists {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .title {
+    font-size: 24px;
+    margin-bottom: 1rem;
+  }
+}

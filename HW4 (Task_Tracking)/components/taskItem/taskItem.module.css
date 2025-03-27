@@ -1,0 +1,39 @@
+.box {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.taskIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+}
+
+.box a {
+  color: #000;
+  text-decoration: none;
+  font-weight: 500;
+  flex-grow: 1;
+}
+
+.box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.box a:hover {
+  color: #1f2937;
+}
+
+@media (max-width: 640px) {
+  .box {
+    padding: 0.75rem;
+  }
+}
